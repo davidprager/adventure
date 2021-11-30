@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Adventure</title>
+    <script src="JSConsole.js"></script>
+    <script src="Adventure.js"></script>
+    <script src="AdvGame.js"></script>
+    <script src="AdvObject.js"></script>
+    <script src="AdvPassage.js"></script>
+    <script src="AdvRoom.js"></script>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body onload="Adventure()">
+    <div id="GameData" >
+      <object name="KEYS"
+              description="a set of keys"
+              location="InsideBuilding" />
+       <object name="WATER"
+              description="a bottle of water"
+              location="PLAYER" />
+      <object name="CROWN"
+              description="a beautiful, ornate crown"
+              location="TreasureRoom" />
+
+      <room name="OutsideBuilding" short="Outside building">
+        You are standing at the end of a road before a small brick
+        building.  A road runs up a small hill to the west.
+        <passage dir="WEST" room="EndOfRoad" />
+        <passage dir="UP" room="EndOfRoad" />
+        <passage dir="NORTH" room="InsideBuilding" />
+        <passage dir="IN" room="InsideBuilding" />
+        <passage dir="SOUTH" room="Valley" />
+      </room>
+
+      <room name="EndOfRoad" short="End of road">
+        You are at the end of a road at the top of a small hill.
+        You can see a small building in the valley to the east.
+        <passage dir="EAST" room="OutsideBuilding" />
+        <passage dir="DOWN" room="OutsideBuilding" />
+      </room>
+
+      <room name="InsideBuilding" short="Inside building">
+        You are inside a building.  The exit door is to the south.
+        <passage dir="SOUTH" room="OutsideBuilding" />
+        <passage dir="OUT" room="OutsideBuilding" />
+        <passage dir="NORTH" room="TreasureRoom" key="KEYS" />
+      </room>
+
+      <room name="TreasureRoom" short="Treasure Room">
+        You are in a room with chests overflowing with treasure.
+        The door behind you has locked shut. There is too much to take,
+        but maybe you can manage a crown. Hopefully saying the
+        magic number "42", you will be able to get out.
+        <passage dir="42" room="Victory" key="CROWN"/>
+        <passage dir="42" room="AlmostVictory"/>
+      </room>
+
+      <room name="Victory">
+        You have collected all the treasures and are admitted to
+        the Adventurer's Hall of Fame.  Congratulations!
+        <passage dir="FORCED" room="EXIT" />
+      </room>
+
+      <room name="AlmostVictory">
+        You are swept away by a huge wind and find yourself back where you were
+        <passage dir="FORCED" room="TreasureRoom" />
+      </room>
+
+      <synonym word="Q" definition="QUIT" />
+      <synonym word="L" definition="LOOK" />
+      <synonym word="I" definition="INVENTORY" />
+      <synonym word="N" definition="NORTH" />
+      <synonym word="S" definition="SOUTH" />
+      <synonym word="E" definition="EAST" />
+      <synonym word="W" definition="WEST" />
+      <synonym word="U" definition="UP" />
+      <synonym word="D" definition="DOWN" />
+      <synonym word="BACK" definition="OUT" />
+      <synonym word="BOTTLE" definition="WATER" />
+    </div>
+  </body>
+</html>
